@@ -607,7 +607,7 @@ def identity(node: ir.Node, op, state: OptimizerState) -> ReturnValue:
     del op
     input = node.inputs[0]
     output = node.outputs[0]
-    if input is not None and output is not None:
+    if input is not None and output is not None and len(input.shape) == len(output.shape):
         input.shape = _merge_shapes(input.shape, output.shape)
         if input.type is None:
             input.type = output.type
